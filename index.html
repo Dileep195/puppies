@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Puppy Sanctuary for Anvesha</title>
+<title>Puppy Sanctuary for Àñveshä</title>
 
 <style>
 
@@ -17,6 +17,7 @@ background:linear-gradient(#0f2027,#203a43,#2c5364);
 color:white;
 text-align:center;
 padding:20px;
+overflow-x:hidden;
 }
 
 /* glowing title */
@@ -63,47 +64,32 @@ font-size:16px;
 cursor:pointer;
 }
 
-/* floating puppies */
+/* falling puppies */
 
-.floating{
+.falling{
 position:fixed;
-bottom:-80px;
+top:-50px;
 font-size:28px;
-animation:floatUp 10s linear infinite;
+animation:fallDown 10s linear infinite;
 opacity:0.7;
 }
 
-@keyframes floatUp{
+@keyframes fallDown{
 
 0%{
 transform:translateY(0);
 opacity:0;
 }
 
-50%{
+10%{
 opacity:1;
 }
 
 100%{
-transform:translateY(-110vh);
+transform:translateY(110vh);
 opacity:0;
 }
 
-}
-
-/* bottom quote */
-
-.quote{
-position:fixed;
-bottom:25px;
-left:0;
-right:0;
-font-size:17px;
-padding:10px 25px;
-text-align:center;
-color:#ffd6f2;
-text-shadow:0 0 10px rgba(255,182,230,0.8);
-line-height:1.4;
 }
 
 </style>
@@ -112,7 +98,7 @@ line-height:1.4;
 
 <body>
 
-<div class="glow">✨ Get Well Soon Anvesha ✨</div>
+<div class="glow">✨ Get Well Soon Àñveshä ✨</div>
 
 <div class="subtitle">
 Some puppies brought you flowers today 🌷🐶
@@ -123,11 +109,6 @@ Some puppies brought you flowers today 🌷🐶
 <br>
 
 <button onclick="nextPuppy()">Next Puppy 🌷</button>
-
-
-<div class="quote">
-“A few puppies brought you flowers today… because someone wants you to smile.” 🌷🐶
-</div>
 
 
 <script>
@@ -156,13 +137,13 @@ document.getElementById("puppy-display").src = puppyGifs[current];
 
 }
 
-/* floating puppies */
+/* falling puppies animation */
 
 setInterval(()=>{
 
 const pup=document.createElement("div");
 
-pup.className="floating";
+pup.className="falling";
 
 pup.innerHTML="🐶";
 
