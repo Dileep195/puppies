@@ -1,9 +1,11 @@
-```html
+
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Puppy Sanctuary for Anvesha</title>
 
 <style>
@@ -14,43 +16,44 @@ font-family:'Segoe UI',sans-serif;
 background:linear-gradient(#0f2027,#203a43,#2c5364);
 color:white;
 text-align:center;
-padding:30px;
-overflow-x:hidden;
+padding:20px;
 }
 
 /* glowing title */
 
 .glow{
-font-size:2.4rem;
+font-size:28px;
 color:#ffd1f4;
 text-shadow:
 0 0 10px #ff9ed6,
 0 0 20px #ff9ed6,
-0 0 30px #ff9ed6,
-0 0 40px #ff9ed6;
-margin-bottom:10px;
+0 0 30px #ff9ed6;
+margin-top:10px;
 }
 
 /* subtitle */
 
 .subtitle{
-opacity:0.85;
-margin-bottom:25px;
+opacity:0.9;
+margin-top:8px;
+margin-bottom:20px;
+font-size:15px;
 }
 
-/* main puppy image */
+/* puppy image */
 
 #puppy-display{
-width:280px;
+width:85%;
+max-width:320px;
 border-radius:20px;
 box-shadow:0 0 30px rgba(255,255,255,0.3);
 }
 
-/* buttons */
+/* button */
 
 button{
-margin:15px;
-padding:12px 26px;
+margin-top:25px;
+padding:14px 26px;
 border:none;
 border-radius:30px;
 background:#ffb6e6;
@@ -58,21 +61,16 @@ color:black;
 font-weight:bold;
 font-size:16px;
 cursor:pointer;
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.1);
 }
 
 /* floating puppies */
 
 .floating{
 position:fixed;
-bottom:-100px;
-font-size:30px;
+bottom:-80px;
+font-size:28px;
 animation:floatUp 10s linear infinite;
-opacity:0.8;
+opacity:0.7;
 }
 
 @keyframes floatUp{
@@ -93,61 +91,19 @@ opacity:0;
 
 }
 
-/* healing hearts */
+/* bottom quote */
 
-.heart{
+.quote{
 position:fixed;
-color:#ff9bd4;
-font-size:25px;
-animation:rise 6s linear forwards;
-}
-
-@keyframes rise{
-
-0%{
-transform:translateY(0);
-opacity:1;
-}
-
-100%{
-transform:translateY(-300px);
-opacity:0;
-}
-
-}
-
-/* puppy delivering tulip */
-
-.delivery{
-font-size:60px;
-position:fixed;
-bottom:50px;
-left:-100px;
-animation:deliver 7s linear forwards;
-}
-
-@keyframes deliver{
-
-0%{
-left:-100px;
-}
-
-50%{
-left:45%;
-}
-
-100%{
-left:110%;
-}
-
-}
-
-.footer{
-position:fixed;
-bottom:10px;
-width:100%;
-font-size:14px;
-opacity:0.9;
+bottom:25px;
+left:0;
+right:0;
+font-size:17px;
+padding:10px 25px;
+text-align:center;
+color:#ffd6f2;
+text-shadow:0 0 10px rgba(255,182,230,0.8);
+line-height:1.4;
 }
 
 </style>
@@ -166,21 +122,17 @@ Some puppies brought you flowers today 🌷🐶
 
 <br>
 
-<button onclick="newPuppy()">🐶 Pet the Pup</button>
-
-<button onclick="puppyHug()">🫂 Puppy Hug for Anvesha</button>
+<button onclick="nextPuppy()">Next Puppy 🌷</button>
 
 
-<div class="footer">
-Every puppy here is sending you strength and a tiny woof of love 🐾
+<div class="quote">
+“A few puppies brought you flowers today… because someone wants you to smile.” 🌷🐶
 </div>
 
 
 <script>
 
-/* puppy flower gifs */
-
-const puppyGifs=[
+const puppyGifs = [
 
 "images/puppy-flower1.gif",
 "images/puppy-flower2.gif",
@@ -190,78 +142,21 @@ const puppyGifs=[
 
 ];
 
+let current = 0;
 
-/* change puppy */
+function nextPuppy(){
 
-function newPuppy(){
+current++;
 
-const img=document.getElementById("puppy-display");
+if(current >= puppyGifs.length){
+current = 0;
+}
 
-img.src=puppyGifs[Math.floor(Math.random()*puppyGifs.length)];
-
-spawnHeart();
+document.getElementById("puppy-display").src = puppyGifs[current];
 
 }
 
-
-/* healing hearts */
-
-function spawnHeart(){
-
-const heart=document.createElement("div");
-
-heart.className="heart";
-
-heart.innerHTML="💗";
-
-heart.style.left=Math.random()*100+"vw";
-
-heart.style.bottom="60px";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-
-heart.remove();
-
-},6000);
-
-}
-
-
-/* puppy hug button */
-
-function puppyHug(){
-
-/* tulip delivery animation */
-
-const delivery=document.createElement("div");
-
-delivery.className="delivery";
-
-delivery.innerHTML="🐶🌷";
-
-document.body.appendChild(delivery);
-
-setTimeout(()=>{
-
-delivery.remove();
-
-},7000);
-
-
-/* extra hearts */
-
-for(let i=0;i<10;i++){
-
-spawnHeart();
-
-}
-
-}
-
-
-/* floating puppies background */
+/* floating puppies */
 
 setInterval(()=>{
 
@@ -276,9 +171,7 @@ pup.style.left=Math.random()*100+"vw";
 document.body.appendChild(pup);
 
 setTimeout(()=>{
-
 pup.remove();
-
 },10000);
 
 },2500);
@@ -287,4 +180,4 @@ pup.remove();
 
 </body>
 </html>
-```
+
