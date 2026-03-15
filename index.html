@@ -1,0 +1,290 @@
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Puppy Sanctuary for Anvesha</title>
+
+<style>
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(#0f2027,#203a43,#2c5364);
+color:white;
+text-align:center;
+padding:30px;
+overflow-x:hidden;
+}
+
+/* glowing title */
+
+.glow{
+font-size:2.4rem;
+color:#ffd1f4;
+text-shadow:
+0 0 10px #ff9ed6,
+0 0 20px #ff9ed6,
+0 0 30px #ff9ed6,
+0 0 40px #ff9ed6;
+margin-bottom:10px;
+}
+
+/* subtitle */
+
+.subtitle{
+opacity:0.85;
+margin-bottom:25px;
+}
+
+/* main puppy image */
+
+#puppy-display{
+width:280px;
+border-radius:20px;
+box-shadow:0 0 30px rgba(255,255,255,0.3);
+}
+
+/* buttons */
+
+button{
+margin:15px;
+padding:12px 26px;
+border:none;
+border-radius:30px;
+background:#ffb6e6;
+color:black;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+/* floating puppies */
+
+.floating{
+position:fixed;
+bottom:-100px;
+font-size:30px;
+animation:floatUp 10s linear infinite;
+opacity:0.8;
+}
+
+@keyframes floatUp{
+
+0%{
+transform:translateY(0);
+opacity:0;
+}
+
+50%{
+opacity:1;
+}
+
+100%{
+transform:translateY(-110vh);
+opacity:0;
+}
+
+}
+
+/* healing hearts */
+
+.heart{
+position:fixed;
+color:#ff9bd4;
+font-size:25px;
+animation:rise 6s linear forwards;
+}
+
+@keyframes rise{
+
+0%{
+transform:translateY(0);
+opacity:1;
+}
+
+100%{
+transform:translateY(-300px);
+opacity:0;
+}
+
+}
+
+/* puppy delivering tulip */
+
+.delivery{
+font-size:60px;
+position:fixed;
+bottom:50px;
+left:-100px;
+animation:deliver 7s linear forwards;
+}
+
+@keyframes deliver{
+
+0%{
+left:-100px;
+}
+
+50%{
+left:45%;
+}
+
+100%{
+left:110%;
+}
+
+}
+
+.footer{
+position:fixed;
+bottom:10px;
+width:100%;
+font-size:14px;
+opacity:0.9;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="glow">✨ Get Well Soon Anvesha ✨</div>
+
+<div class="subtitle">
+Some puppies brought you flowers today 🌷🐶
+</div>
+
+<img id="puppy-display" src="images/puppy-flower1.gif">
+
+<br>
+
+<button onclick="newPuppy()">🐶 Pet the Pup</button>
+
+<button onclick="puppyHug()">🫂 Puppy Hug for Anvesha</button>
+
+
+<div class="footer">
+Every puppy here is sending you strength and a tiny woof of love 🐾
+</div>
+
+
+<script>
+
+/* puppy flower gifs */
+
+const puppyGifs=[
+
+"images/puppy-flower1.gif",
+"images/puppy-flower2.gif",
+"images/puppy-flower3.gif",
+"images/puppy-flower4.gif",
+"images/puppy-flower5.gif"
+
+];
+
+
+/* change puppy */
+
+function newPuppy(){
+
+const img=document.getElementById("puppy-display");
+
+img.src=puppyGifs[Math.floor(Math.random()*puppyGifs.length)];
+
+spawnHeart();
+
+}
+
+
+/* healing hearts */
+
+function spawnHeart(){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="💗";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.bottom="60px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+
+heart.remove();
+
+},6000);
+
+}
+
+
+/* puppy hug button */
+
+function puppyHug(){
+
+/* tulip delivery animation */
+
+const delivery=document.createElement("div");
+
+delivery.className="delivery";
+
+delivery.innerHTML="🐶🌷";
+
+document.body.appendChild(delivery);
+
+setTimeout(()=>{
+
+delivery.remove();
+
+},7000);
+
+
+/* extra hearts */
+
+for(let i=0;i<10;i++){
+
+spawnHeart();
+
+}
+
+}
+
+
+/* floating puppies background */
+
+setInterval(()=>{
+
+const pup=document.createElement("div");
+
+pup.className="floating";
+
+pup.innerHTML="🐶";
+
+pup.style.left=Math.random()*100+"vw";
+
+document.body.appendChild(pup);
+
+setTimeout(()=>{
+
+pup.remove();
+
+},10000);
+
+},2500);
+
+</script>
+
+</body>
+</html>
+```
